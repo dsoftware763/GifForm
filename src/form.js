@@ -104,19 +104,68 @@ class FormUi extends Component {
             this.setState({ family: "My family makes" })
         }
     }
-    ShowBtn = () => {
-        this.setState({
-            visibility27: "",
-            visibility29: "none"
-        })
+    ShowBtn=(e) => {
+        if(e.target.value > 1){
+            this.setState({
+                visibility27: "",
+                visibility29: "none"
+            })
+        }else{
+            this.setState({
+                visibility29: "",
+                visibility27: "none"
+            })
+        }
     }
+
+    active=()=>{
+       if(this.state.opacity==="0.3"){
+        this.setState({opacity:""})
+       }
+    }
+    dactive=()=>{
+        if(this.state.opacity===""){
+            this.setState({opacity:"0.3"})
+        }
+    }
+    active1=()=>{
+        if(this.state.opacity1==="0.3"){
+         this.setState({opacity1:""})
+        }
+     }
+     dactive1=()=>{
+         if(this.state.opacity1===""){
+             this.setState({opacity1:"0.3"})
+         }
+     }
+     active2=()=>{
+        if(this.state.opacity2==="0.3"){
+         this.setState({opacity2:""})
+        }
+     }
+     dactive2=()=>{
+         if(this.state.opacity2===""){
+             this.setState({opacity2:"0.3"})
+         }
+     }
+     active3=()=>{
+        if(this.state.opacity3==="0.3"){
+         this.setState({opacity3:""})
+        }
+     }
+     dactive3=()=>{
+         if(this.state.opacity3===""){
+             this.setState({opacity3:"0.3"})
+         }
+     }
+
     render() {
         return (
             <form>
                 <label>
                     {this.state.head}
                 </label>
-                <div style={{ opacity: this.state.opacity }} >
+                <div style={{ opacity: this.state.opacity }} onMouseOver={this.active} onMouseOut={this.dactive}>
                     <label>MY ZIP code is: </label>
                     <input
                         placeholder="10012"
@@ -134,7 +183,7 @@ class FormUi extends Component {
                     {this.state.zip}
                 </label>
 
-                <div style={{ display: this.state.visibility21, opacity: this.state.opacity1 }}>
+                <div style={{ display: this.state.visibility21, opacity: this.state.opacity1 }} onMouseOver={this.active1} onMouseOut={this.dactive1}>
                     <label>I'd Like to cover</label>
                     <select onChange={this.OptionChange}>
                         <option></option>
@@ -144,33 +193,26 @@ class FormUi extends Component {
                         <option>Me and My Kids</option>
                     </select>
                 </div>
-                <div style={{ display: this.state.visibility22, opacity: this.state.opacity2 }}>
-                    <label>
-                        I am
-                      <input
-                            maxLength="3"
-                            size="3"
-                            onChange={this.MemberChange}
-                        />
-                        years old
-                 </label>
+                <div style={{ display: this.state.visibility22, opacity: this.state.opacity2 }} onMouseOver={this.active2} onMouseOut={this.dactive2}>
+                    <label> I am<input maxLength="3"size="3"onChange={this.MemberChange}/>years old</label>
                 </div>
-                <div style={{ display: this.state.visibility23, opacity: this.state.opacity2 }}>
+                <div style={{ display: this.state.visibility23, opacity: this.state.opacity2 }} onMouseOver={this.active2} onMouseOut={this.dactive2} >
                     <label>I am <input maxLength="3" size="3" />years old and my spouse is</label>
                     <input maxLength="3" size="3" onChange={this.MemberChange} />
                 </div>
-                <div style={{ display: this.state.visibility24, opacity: this.state.opacity2 }}>
+                <div style={{ display: this.state.visibility24, opacity: this.state.opacity2 }} onMouseOver={this.active2} onMouseOut={this.dactive2}>
                     <label>I am <input maxLength="3" size="3" />years old and my spouse is<input maxLength="3" size="3" />and my Kid is</label>
                     <input maxLength="3" size="3" onChange={this.MemberChange} />
                 </div>
-                <div style={{ display: this.state.visibility25, opacity: this.state.opacity2 }}>
+                <div style={{ display: this.state.visibility25, opacity: this.state.opacity2 }} onMouseOver={this.active2} onMouseOut={this.dactive2}>
                     <label>I am <input maxLength="3" size="3" />years old and my Kid is</label>
                     <input maxLength="3" size="3" onChange={this.MemberChange} />
                 </div>
                 <div style={{ display: this.state.visibility28 }}>
                     <label style={{ fontStyle: "italic", fontSize: "medium" }}>{this.state.age}</label>
                 </div>
-                <div style={{ display: this.state.visibility26, }}>
+
+                <div style={{ display: this.state.visibility26, opacity: this.state.opacity3 }} onMouseOver={this.active3} onMouseOut={this.dactive3}>
                     <label>{this.state.family} $<input size="10" onChange={this.ShowBtn} />yearly with
                         <select onChange={this.SelectChange}>
                             <option>1</option>
@@ -180,9 +222,11 @@ class FormUi extends Component {
                             <option>5+</option>
                         </select>person in my tax household</label>
                 </div>
+
                 <div style={{ display: this.state.visibility29 }}>
                     <label style={{ fontStyle: "italic", fontSize: "medium" }}>{this.state.income}</label>
                 </div>
+
                 <div style={{ display: this.state.visibility27 }}>
                     <button>NEXT</button>
                 </div>
