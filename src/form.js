@@ -18,63 +18,123 @@ class FormUi extends Component {
             visibility29: "none",
             option: "",
             family: "I make",
-            age:" your age is required to get a quote",
+            age: " your age is required to get a quote",
             income: "valid income required to get a quote",
             opacity: "",
             opacity1: "",
             opacity2: "",
             opacity3: ""
-            
         }
     }
     ZipChange = (e) => {
-        this.setState({ zip21: e.target.value })
+        const zip21 = (e.target.validity.valid) ? e.target.value : this.state.zip21;
+        this.setState({ zip21 });
         if (e.target.value.length >= 5) {
-            this.setState({ head: "" , zip: "", visibility21: "" ,  opacity: "0.3" })
-
+            this.setState({
+                head: "",
+                zip: "",
+                visibility21: "",
+                opacity: "0.3"
+            })
         } else {
-            this.setState({ head: "Lets get you a quote - it only takes few seconds",zip: "zipcode must be 5 digit",visibility21: "hidden" })
+            this.setState({
+                head: "Lets get you a quote - it only takes few seconds",
+                zip: "zipcode must be 5 digit",
+                visibility21: "hidden"
+            })
         }
     }
 
     OptionChange = (e) => {
         this.setState({ option: e.target.value })
         if (e.target.value === "Me") {
-            this.setState({ visibility22: " ", visibility23: "none", visibility24: "none", visibility25: "none", visibility28:" "  , opacity1: "0.3"  })
+            this.setState({
+                visibility22: " ",
+                visibility23: "none",
+                visibility24: "none",
+                visibility25: "none",
+                visibility28: " ",
+                opacity1: "0.3"
+            })
         } if (e.target.value === "Me and My Spouse") {
-            this.setState({ visibility23: "", visibility22: "none", visibility24: "none", visibility25: "none", visibility28:" ",  age:" your and your spouse age is required to get a quote" , opacity1: "0.3" })
+            this.setState({
+                visibility23: "",
+                visibility22: "none",
+                visibility24: "none",
+                visibility25: "none",
+                visibility28: " ",
+                age: " your and your spouse age is required to get a quote",
+                opacity1: "0.3"
+            })
         } if (e.target.value === "Me, My Spouse & My Kids") {
-            this.setState({ visibility24: "", visibility23: "none", visibility22: "none", visibility25: "none" , visibility28:" ",  age:" all ages are required to get a quote" , opacity1: "0.3" })
+            this.setState({
+                visibility24: "",
+                visibility23: "none",
+                visibility22: "none",
+                visibility25: "none",
+                visibility28: " ",
+                age: " all ages are required to get a quote",
+                opacity1: "0.3"
+            })
         } if (e.target.value === "Me and My Kids") {
-            this.setState({ visibility25: "", visibility23: "none", visibility24: "none", visibility22: "none" , visibility28:" " ,  age:" your and your kids age is required to get a quote" , opacity1: "0.3" })
+            this.setState({
+                visibility25: "",
+                visibility23: "none",
+                visibility24: "none",
+                visibility22: "none",
+                visibility28: " ",
+                age: " your and your kids age is required to get a quote",
+                opacity1: "0.3"
+            })
         }
     }
 
     MemberChange = () => {
-        this.setState({ visibility26: "" , visibility29:"" , visibility28:"none" , opacity2:"0.3"})
+        this.setState({
+            visibility26: "",
+            visibility29: "",
+            visibility28: "none",
+            opacity2: "0.3"
+        })
     }
     SelectChange = (e) => {
         if (e.target.value === "1") {
-            this.setState({ family:  "I make" })
-        }else{
-            this.setState({ family: "My family"  })
+            this.setState({ family: "I make" })
+        } else {
+            this.setState({ family: "My family makes" })
         }
     }
-    ShowBtn = (n) => {
-        this.setState({ visibility27: "" , visibility29: "none" })
+    ShowBtn = () => {
+        this.setState({
+            visibility27: "",
+            visibility29: "none"
+        })
     }
     render() {
         return (
             <form>
-                <label>{this.state.head}</label>
-                <div style={{ opacity: this.state.opacity }} > 
+                <label>
+                    {this.state.head}
+                </label>
+                <div style={{ opacity: this.state.opacity }} >
                     <label>MY ZIP code is: </label>
-                    <input placeholder="10012" onChange={this.ZipChange} value={this.state.zip21} maxLength="5" size="4"   />
+                    <input
+                        placeholder="10012"
+                        onChange={this.ZipChange}
+                        type="text"
+                        pattern="[0-9]*"
+                        maxLength="5"
+                        size="4"
+                        onInput={this.ZipChange.bind(this)}
+                        value={this.state.zip21}
+                    />
                 </div>
 
-                <label style={{ fontStyle: "italic" , fontSize:"medium"}} >{this.state.zip}</label>
+                <label style={{ fontStyle: "italic", fontSize: "medium" }}>
+                    {this.state.zip}
+                </label>
 
-                <div style={{ display: this.state.visibility21 , opacity: this.state.opacity1 }}>
+                <div style={{ display: this.state.visibility21, opacity: this.state.opacity1 }}>
                     <label>I'd Like to cover</label>
                     <select onChange={this.OptionChange}>
                         <option></option>
@@ -84,21 +144,48 @@ class FormUi extends Component {
                         <option>Me and My Kids</option>
                     </select>
                 </div>
-                <div style={{ display: this.state.visibility22,opacity: this.state.opacity2 }}><label>I am <input maxLength="3" size="3" onChange={this.MemberChange} />years old</label></div>
-                <div style={{ display: this.state.visibility23,opacity: this.state.opacity2 }}><label>I am <input maxLength="3" size="3"/>years old and my spouse is</label><input maxLength="3" size="3" onChange={this.MemberChange} /></div>
-                <div style={{ display: this.state.visibility24,opacity: this.state.opacity2 }}><label>I am <input maxLength="3" size="3"/>years old and my spouse is<input maxLength="3" size="3"/>and my Kid is</label><input maxLength="3" size="3" onChange={this.MemberChange} /></div>
-                <div style={{ display: this.state.visibility25,opacity: this.state.opacity2 }}><label>I am <input maxLength="3" size="3"/>years old and my Kid is</label><input maxLength="3" size="3" onChange={this.MemberChange} /></div>
-                <div style={{ display: this.state.visibility28 }}><label style={{ fontStyle: "italic" , fontSize:"medium"}}>{this.state.age}</label></div> 
-                <div style={{ display: this.state.visibility26, }} ><label>{this.state.family} $<input size="10"  onChange={this.ShowBtn} />yearly with
+                <div style={{ display: this.state.visibility22, opacity: this.state.opacity2 }}>
+                    <label>
+                        I am
+                      <input
+                            maxLength="3"
+                            size="3"
+                            onChange={this.MemberChange}
+                        />
+                        years old
+                 </label>
+                </div>
+                <div style={{ display: this.state.visibility23, opacity: this.state.opacity2 }}>
+                    <label>I am <input maxLength="3" size="3" />years old and my spouse is</label>
+                    <input maxLength="3" size="3" onChange={this.MemberChange} />
+                </div>
+                <div style={{ display: this.state.visibility24, opacity: this.state.opacity2 }}>
+                    <label>I am <input maxLength="3" size="3" />years old and my spouse is<input maxLength="3" size="3" />and my Kid is</label>
+                    <input maxLength="3" size="3" onChange={this.MemberChange} />
+                </div>
+                <div style={{ display: this.state.visibility25, opacity: this.state.opacity2 }}>
+                    <label>I am <input maxLength="3" size="3" />years old and my Kid is</label>
+                    <input maxLength="3" size="3" onChange={this.MemberChange} />
+                </div>
+                <div style={{ display: this.state.visibility28 }}>
+                    <label style={{ fontStyle: "italic", fontSize: "medium" }}>{this.state.age}</label>
+                </div>
+                <div style={{ display: this.state.visibility26, }}>
+                    <label>{this.state.family} $<input size="10" onChange={this.ShowBtn} />yearly with
                         <select onChange={this.SelectChange}>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5+</option>
-                    </select>person in my tax household</label></div>
-                <div style={{ display: this.state.visibility29 }}><label style={{ fontStyle: "italic" , fontSize:"medium"}}>{this.state.income}</label></div> 
-                <div style={{ display: this.state.visibility27 }}><button>NEXT</button></div>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5+</option>
+                        </select>person in my tax household</label>
+                </div>
+                <div style={{ display: this.state.visibility29 }}>
+                    <label style={{ fontStyle: "italic", fontSize: "medium" }}>{this.state.income}</label>
+                </div>
+                <div style={{ display: this.state.visibility27 }}>
+                    <button>NEXT</button>
+                </div>
             </form>
         );
     }
