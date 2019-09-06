@@ -1,0 +1,23 @@
+body{
+    font-size:20px;
+    align-items: center;
+    background-color:  aqua
+}
+
+div{
+    margin-top: 15px;
+}
+
+input{
+    padding:5px;
+    margin:10px 10px
+}
+
+select{
+    padding:5px;
+    margin:0 10px
+}
+
+label{
+    margin-top: 100px;
+}
