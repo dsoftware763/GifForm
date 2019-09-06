@@ -1,7 +1,7 @@
 body{
     font-size:20px;
     align-items: center;
-    background-color:  aqua
+    margin-left: 20px;
 }
 
 div{
@@ -21,3 +21,28 @@ select{
 label{
     margin-top: 100px;
 }
+
+input {
+    border: none;
+    border-bottom: 2px solid rgb(65, 115, 206);
+    outline: none;
+    font-size: xx-large;
+    
+}
+
+select {
+    outline: none;
+    border: none;
+    background-color: white;
+    border-bottom: 2px solid rgb(65, 115, 206);
+    font-size: x-large;
+}
+button{
+    background-color: rgb(65, 115, 206);
+    padding: 10px 43px;
+    color: white;
+
+}
+
+
+    
